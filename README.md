@@ -9,7 +9,7 @@ This is a collection of submodules that make it easier to non-destructively mana
 
 ```hcl
 module "ecs_service_basic_cluster" {
-  source = "michaelact/autoscaling/aws//modules/ecs-cluster"
+  source = "michaelact/simple-autoscaling/aws//modules/ecs-cluster"
 
   cluster_name           = "ecs-cluster-exploration-michaelact"
   autoscaling_group_name = "asg-cluster-exploration-michaelact"
