@@ -12,17 +12,17 @@ variable "auto_scaling" {
     min_size           = number
     max_size           = number
 
-    scale_in = object({
+    scale_in = optional(object({
       evaluation_periods = optional(number, 5)
       cooldown           = optional(number, 300)
       interval_period    = optional(number, 60)
-    })
+    }), {})
 
-    scale_out = object({
+    scale_out = optional(object({
       evaluation_periods = optional(number, 3)
       cooldown           = optional(number, 60)
       interval_period    = optional(number, 60)
-    })
+    }), {})
   })
 }
 

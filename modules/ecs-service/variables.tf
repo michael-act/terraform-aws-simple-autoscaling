@@ -18,17 +18,17 @@ variable "name_prefix" {
 variable "auto_scaling" {
   description = "Auto Scaling Configuration"
   type        = object({
-    scale_in = object({
-      evaluation_period = optional(number, 5)
-      cooldown          = optional(number, 300)
-      interval_period   = optional(number, 60)
-    })
+    scale_in = optional(object({
+      evaluation_periods = optional(number, 5)
+      cooldown           = optional(number, 300)
+      interval_period    = optional(number, 60)
+    }), {})
 
-    scale_out = object({
+    scale_out = optional(object({
       evaluation_period = optional(number, 3)
       cooldown          = optional(number, 60)
       interval_period   = optional(number, 60)
-    })
+    }), {})
 
     min_size          = optional(number, 1)
     max_size          = optional(number, 3)
@@ -55,8 +55,8 @@ variable "auto_scaling" {
 variable "metric" {
   description = "Target Metric Configuration"
   type        = object({
-    name           = optional(string, "MemoryUtilization")
-    statistic_type = optional(string, "Average")
+    name           = optional(string, "MemoryUtilization") # Available built-in metrics: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cloudwatch-metrics.html#ecs-metrics
+    statistic_type = optional(string, "Average") # Available built-in statistic type: https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Statistics-definitions.html
     target_high    = optional(number, 85)
     target_low     = optional(number, 30)
   })
