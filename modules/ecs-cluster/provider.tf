@@ -1,0 +1,9 @@
+terraform {
+  required_providers {
+    aws = {
+      version = ">= 5.26.0"
+    }
+  }
+
+  required_version = ">= 1.6.0"
+}
