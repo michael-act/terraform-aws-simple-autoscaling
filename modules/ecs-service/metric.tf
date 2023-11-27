@@ -3,7 +3,7 @@
 #####################################
 
 resource "aws_cloudwatch_metric_alarm" "firing" {
-  alarm_name          = "${var.name_prefix}-firing"
+  alarm_name          = "${var.name_prefix}-${var.cluster_name}-${var.service_name}-firing"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = var.autoscaling.scale_out.evaluation_periods
   metric_name         = var.metric.name
@@ -22,14 +22,14 @@ resource "aws_cloudwatch_metric_alarm" "firing" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "relax" {
-  alarm_name          = "${var.name_prefix}-relax"
+  alarm_name          = "${var.name_prefix}-${var.cluster_name}-${var.service_name}-relax"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = var.autoscaling.scale_in.evaluation_periods
   metric_name         = var.metric.name
   namespace           = "AWS/ECS"
   period              = var.autoscaling.scale_in.interval_period
   statistic           = var.metric.statistic_type
-  threshold           = var.metric.target_high
+  threshold           = var.metric.target_low
   dimensions          =  {
     ClusterName = var.cluster_name
     ServiceName = var.service_name

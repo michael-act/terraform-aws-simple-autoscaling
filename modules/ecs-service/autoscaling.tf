@@ -11,7 +11,7 @@ resource "aws_appautoscaling_target" "this" {
 }
 
 resource "aws_appautoscaling_policy" "scale_out" {
-  name               = "${var.name_prefix}-scale-out"
+  name               = "${var.name_prefix}-${var.cluster_name}-${var.service_name}-scale-out"
   service_namespace  = "ecs"
   resource_id        = "service/${var.cluster_name}/${var.service_name}"
   scalable_dimension = "ecs:service:DesiredCount"
@@ -29,7 +29,7 @@ resource "aws_appautoscaling_policy" "scale_out" {
 }
 
 resource "aws_appautoscaling_policy" "scale_in" {
-  name               = "${var.name_prefix}-scale-in"
+  name               = "${var.name_prefix}-${var.cluster_name}-${var.service_name}-scale-in"
   service_namespace  = "ecs"
   resource_id        = "service/${var.cluster_name}/${var.service_name}"
   scalable_dimension = "ecs:service:DesiredCount"
