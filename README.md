@@ -9,7 +9,7 @@ This is a collection of submodules that make it easier to non-destructively mana
 
 ```hcl
 module "ecs_service_basic_cluster" {
-  source = "michaelact/simple-autoscaling/aws//modules/ecs-cluster"
+  source = "michael-act/simple-autoscaling/aws//modules/ecs-cluster"
 
   cluster_name           = "ecs-cluster-exploration-michaelact"
   autoscaling_group_name = "asg-cluster-exploration-michaelact"
@@ -23,8 +23,8 @@ module "ecs_service_basic_cluster" {
 
 ## Authors
 
-Module is maintained by [Michael Act](https://github.com/michaelact) with help from [these awesome contributors](https://github.com/michaelact/terraform-aws-simple-autoscaling/graphs/contributors).
+Module is maintained by [Michael Act](https://github.com/michael-act) with help from [these awesome contributors](https://github.com/michael-act/terraform-aws-simple-autoscaling/graphs/contributors).
 
 ## License
 
-Apache 2 Licensed. See [LICENSE](https://github.com/michaelact/terraform-aws-simple-autoscaling/tree/master/LICENSE) for full details.
+Apache 2 Licensed. See [LICENSE](https://github.com/michael-act/terraform-aws-simple-autoscaling/tree/master/LICENSE) for full details.
