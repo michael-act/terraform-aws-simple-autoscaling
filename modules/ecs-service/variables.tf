@@ -15,7 +15,7 @@ variable "name_prefix" {
   default = "ecs-service"
 }
 
-variable "auto_scaling" {
+variable "autoscaling" {
   description = "Auto Scaling Configuration"
   type        = object({
     scale_in = optional(object({

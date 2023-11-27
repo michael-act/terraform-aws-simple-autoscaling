@@ -5,10 +5,10 @@
 resource "aws_cloudwatch_metric_alarm" "firing" {
   alarm_name          = "${var.name_prefix}-firing"
   comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = var.auto_scaling.scale_out.evaluation_periods
+  evaluation_periods  = var.autoscaling.scale_out.evaluation_periods
   metric_name         = var.metric.name
   namespace           = "AWS/ECS"
-  period              = var.auto_scaling.scale_out.interval_period
+  period              = var.autoscaling.scale_out.interval_period
   statistic           = var.metric.statistic_type
   threshold           = var.metric.target_high
   dimensions          =  {
@@ -24,10 +24,10 @@ resource "aws_cloudwatch_metric_alarm" "firing" {
 resource "aws_cloudwatch_metric_alarm" "relax" {
   alarm_name          = "${var.name_prefix}-relax"
   comparison_operator = "LessThanOrEqualToThreshold"
-  evaluation_periods  = var.auto_scaling.scale_in.evaluation_periods
+  evaluation_periods  = var.autoscaling.scale_in.evaluation_periods
   metric_name         = var.metric.name
   namespace           = "AWS/ECS"
-  period              = var.auto_scaling.scale_in.interval_period
+  period              = var.autoscaling.scale_in.interval_period
   statistic           = var.metric.statistic_type
   threshold           = var.metric.target_high
   dimensions          =  {
