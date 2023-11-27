@@ -25,9 +25,9 @@ variable "auto_scaling" {
     }), {})
 
     scale_out = optional(object({
-      evaluation_period = optional(number, 3)
-      cooldown          = optional(number, 60)
-      interval_period   = optional(number, 60)
+      evaluation_periods = optional(number, 3)
+      cooldown           = optional(number, 60)
+      interval_period    = optional(number, 60)
     }), {})
 
     min_size          = optional(number, 1)

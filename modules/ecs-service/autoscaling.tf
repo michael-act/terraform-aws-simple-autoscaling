@@ -3,18 +3,18 @@
 ##################################
 
 resource "aws_appautoscaling_target" "this" {
-  service_namespace  = lower(var.auto_scaling.namespace)
-  resource_id        = var.auto_scaling.resource_id
-  scalable_dimension = var.auto_scaling.scalable_dimension
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
   min_capacity       = var.auto_scaling.min_size
   max_capacity       = var.auto_scaling.max_size
 }
 
 resource "aws_appautoscaling_policy" "scale_out" {
   name               = "${var.name_prefix}-scale-out"
-  service_namespace  = lower(var.auto_scaling.namespace)
-  resource_id        = var.auto_scaling.resource_id
-  scalable_dimension = var.auto_scaling.scalable_dimension
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
     cooldown                = var.auto_scaling.scale_out.cooldown
@@ -30,9 +30,9 @@ resource "aws_appautoscaling_policy" "scale_out" {
 
 resource "aws_appautoscaling_policy" "scale_in" {
   name               = "${var.name_prefix}-scale-in"
-  service_namespace  = lower(var.auto_scaling.namespace)
-  resource_id        = var.auto_scaling.resource_id
-  scalable_dimension = var.auto_scaling.scalable_dimension
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.cluster_name}/${var.service_name}"
+  scalable_dimension = "ecs:service:DesiredCount"
   step_scaling_policy_configuration {
     adjustment_type         = "ChangeInCapacity"
     cooldown                = var.auto_scaling.scale_in.cooldown
